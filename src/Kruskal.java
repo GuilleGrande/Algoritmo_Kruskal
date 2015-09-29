@@ -1,6 +1,15 @@
 /**
- *
+ * UNIVERSIDAD METROPOLITANA
+ * DEPARTAMENTO DE GESTION DE LA TECNOLOGIA
+ * MODELACION DE SISTEMAS EN REDES
+ * PROFESOR: MSc. JOSE G. HERNANADEZ R.
+ * 
+ *******************************************************************************
+ *                   IMPLEMENTACION DE ALGORITMO KRUSKAL
+ *******************************************************************************
+ * 
  * @author Guillermo Grande
+ * Caracas, 28 de septiembre de 2015.
  */
 
 import java.util.Arrays;
@@ -21,6 +30,7 @@ public class Kruskal
     //**************************************************************************
     //                               MAIN
     //**************************************************************************
+    
     public static void main(String[] args)
     {
         Scanner sc = new Scanner( System.in );
