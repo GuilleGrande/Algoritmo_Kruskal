@@ -2,11 +2,11 @@
  * UNIVERSIDAD METROPOLITANA
  * DEPARTAMENTO DE GESTION DE LA TECNOLOGIA
  * MODELACION DE SISTEMAS EN REDES
- * PROFESOR: MSc. JOSE G. HERNANADEZ R.
+ * PROFESOR: MSc. JOSE G. HERNANDEZ R.
  * 
- *******************************************************************************
+ *------------------------------------------------------------------------------
  *                   IMPLEMENTACION DE ALGORITMO KRUSKAL
- *******************************************************************************
+ *------------------------------------------------------------------------------
  * 
  * @author Guillermo Grande
  * Caracas, 28 de septiembre de 2015.
@@ -18,18 +18,18 @@ import java.util.Scanner;
 
 public class Kruskal 
 {
-    //**************************************************************************
+    //--------------------------------------------------------------------------
     //                              VARIABLES
-    //**************************************************************************
+    //--------------------------------------------------------------------------
     
     static final int MAX = 999;  //maximo numero de vértices
     static int V , E;      //numero de vertices y aristas
     static Edge arista[] = new Edge[ MAX ];//Arreglo de aristas para el uso en kruskal
     static Edge MST[] = new Edge[ MAX ];//Arreglo de aristas del MST encontrado
     
-    //**************************************************************************
+    //--------------------------------------------------------------------------
     //                               MAIN
-    //**************************************************************************
+    //--------------------------------------------------------------------------
     
     public static void main(String[] args)
     {
@@ -62,9 +62,9 @@ public class Kruskal
         calcularKruskal();
     }
     
-    //**************************************************************************
-    //                      METODOS DEL UNION-FIND
-    //**************************************************************************
+    //--------------------------------------------------------------------------
+    //                      METODOS UNION-FIND
+    //--------------------------------------------------------------------------
     
     static int padre[] = new int[ MAX ];  //Este arreglo contiene el padre del i-esimo nodo
 
@@ -99,9 +99,9 @@ public class Kruskal
         }    
     }
     
-    //**************************************************************************
+    //--------------------------------------------------------------------------
     //                         ORDENAR LADOS
-    //**************************************************************************
+    //--------------------------------------------------------------------------
 	
     static class Edge implements Comparator<Edge>
     {    
@@ -118,9 +118,9 @@ public class Kruskal
         }
     };
     
-    //**************************************************************************
+    //--------------------------------------------------------------------------
     //                     IMPLEMENTACION KRUSKAL
-    //**************************************************************************
+    //--------------------------------------------------------------------------
 
     static void calcularKruskal()
     {    
@@ -151,13 +151,13 @@ public class Kruskal
         //VALIDACION DE ENTRADA DE GRAFO   
         if( V - 1 != numAristas )
         {       
-            System.out.println("El grafo ingrsado es invalido. El grafo debe ser conexo.");      
+            System.out.println("El grafo ingresado es invalido. El grafo debe ser conexo.");      
             return;    
         }
         
         //IMPRESION DE RESULTADO
         System.out.println("**********************************************************************");
-        System.out.println("El arbol de minima expansion encontrado contiene las siguientes lados."); 
+        System.out.println("El arbol de minima expansion encontrado contiene las siguientes lados: "); 
         System.out.println("**********************************************************************");   
         for( int i = 0 ; i < numAristas ; ++i )
         {    
@@ -168,4 +168,6 @@ public class Kruskal
         System.out.printf( "El costo minimo total correspondiente al arbol encontrado es de: %d" , total );
         System.out.println("\n**********************************************************************");
     }
+    
+    //--------------------------------------------------------------------------
 }
