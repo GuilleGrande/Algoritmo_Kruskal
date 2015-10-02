@@ -22,10 +22,10 @@ public class Kruskal
     //                              VARIABLES
     //--------------------------------------------------------------------------
     
-    static final int MAX = 999;  //maximo numero de vértices
-    static int V , E;      //numero de vertices y aristas
+    static final int MAX = 999;  //maximo numero de nodos
+    static int V , E;      //numero de nodos y lados
     static Edge arista[] = new Edge[ MAX ];//Arreglo de aristas para el uso en kruskal
-    static Edge MST[] = new Edge[ MAX ];//Arreglo de aristas del MST encontrado
+    static Edge MST[] = new Edge[ MAX ];//Arreglo de lados del MST encontrado
     
     //--------------------------------------------------------------------------
     //                               MAIN
@@ -42,7 +42,7 @@ public class Kruskal
         System.out.println("b. Introduzca el numero de lados del grafo: ");
         E = sc.nextInt();
 		
-	//Realizamos el ingreso del grafo, almacenando las aristas en un arreglo con los datos respectivos
+	//Realizamos el ingreso del grafo, almacenando los lados en un arreglo con los datos respectivos
         System.out.println("\n****************************************************");
         System.out.println("              Arme lista de lados");
         for( int i = 0 ; i < E ; ++i )
@@ -74,7 +74,7 @@ public class Kruskal
         for( int i = 1 ; i <= n ; ++i ) padre[ i ] = i;
     }
 	
-    //Método para encontrar la raiz del vértice actual X
+    //Método para encontrar la raiz del nodo actual X
     static int Find( int x )
     {    
         return ( x == padre[ x ] ) ? x : ( padre[ x ] = Find( padre[ x ] ) );
@@ -86,7 +86,7 @@ public class Kruskal
         padre[ Find( x ) ] = Find( y );
     }
 	
-    //Método que me determina si 2 vértices estan o no en la misma componente conexa	
+    //Método que me determina si 2 nodos estan o no en la misma componente conexa	
     static boolean sameComponent( int x , int y )
     {    
         if( Find( x ) == Find( y ) ) 
@@ -105,9 +105,9 @@ public class Kruskal
 	
     static class Edge implements Comparator<Edge>
     {    
-        int origen;     //Vértice origen    
-        int destino;    //Vértice destino    
-        int peso;       //Peso entre el vértice origen y destino    
+        int origen;     //Nodo origen    
+        int destino;    //Nodo destino    
+        int peso;       //Peso entre el nodo origen y destino    
         Edge(){}
 	    
         //Comparador por peso, me servira al momento de ordenar y lo realizara en orden ascendente	    	
@@ -126,40 +126,40 @@ public class Kruskal
     {    
         int origen , destino , peso;    
         int total = 0;          //Peso total del MST    
-        int numAristas = 0;     //Numero de Aristas del MST
+        int numLados = 0;     //Numero de lados del MST
 	        
         MakeSet( V );           //Inicializamos cada componente    
-        Arrays.sort( arista , 0 , E , new Edge() );//Ordenamos las aristas por su comparador
+        Arrays.sort( arista , 0 , E , new Edge() );//Ordenamos los lados por su comparador
 	    
         for( int i = 0 ; i < E ; ++i )
         {   
-            //Recorremos las aristas ya ordenadas por peso    
-            origen = arista[ i ].origen;    //Vértice origen de la arista actual   
-            destino = arista[ i ].destino;  //Vértice destino de la arista actual    
-            peso = arista[ i ].peso;        //Peso de la arista actual
+            //Recorremos los lados ya ordenadas por peso    
+            origen = arista[ i ].origen;    //Nodo origen del lado actual   
+            destino = arista[ i ].destino;  //Nodo destino del lado actual    
+            peso = arista[ i ].peso;        //Peso del lado actual
     
             //VERIFICAMOS SI PERTENECE AL MISMO ARBOL      
             if( !sameComponent( origen , destino ) )
             {  
                 //Evito ciclos    
                 total += peso;//Incremento el peso total 
-                MST[ numAristas++ ] = arista[ i ];//Agrego a la arista actual     
+                MST[ numLados++ ] = arista[ i ];//Agrego a la arista actual     
                 Union( origen , destino );  //Union de ambas componentes en una sola     
             }   
         }
     
         //VALIDACION DE ENTRADA DE GRAFO   
-        if( V - 1 != numAristas )
+        if( V - 1 != numLados )
         {       
             System.out.println("El grafo ingresado es invalido. El grafo debe ser conexo.");      
             return;    
         }
-        
+                
         //IMPRESION DE RESULTADO
         System.out.println("**********************************************************************");
         System.out.println("El arbol de minima expansion encontrado contiene las siguientes lados: "); 
         System.out.println("**********************************************************************");   
-        for( int i = 0 ; i < numAristas ; ++i )
+        for( int i = 0 ; i < numLados ; ++i )
         {    
             System.out.printf("( %d , %d ) : %d\n" , MST[ i ].origen , MST[ i ].destino , MST[ i ].peso ); //( vertice u , vertice v ) : peso
         }
